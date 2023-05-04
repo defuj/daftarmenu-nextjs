@@ -172,6 +172,7 @@ const Cart = React.memo(() => {
             </div>
         );
     });
+    CartContent.displayName = 'CartContent';
 
     const changseSize = () => {
         let height = window.innerHeight;
