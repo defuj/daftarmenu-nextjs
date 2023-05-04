@@ -9,14 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@flaticon/flaticon-uicons": "^2.1.0",
+    "@lottiefiles/react-lottie-player": "^3.5.3",
     "@types/node": "18.16.3",
     "@types/react": "18.2.0",
     "@types/react-dom": "18.2.1",
+    "axios": "^0.27.2",
+    "bootstrap": "^4.6.0",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.4",
+    "i18next": "^22.4.15",
     "next": "13.3.4",
+    "next-i18next": "^13.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-i18next": "^12.2.2",
+    "sweetalert2": "^11.4.32",
+    "swiper": "^8.3.2",
     "typescript": "5.0.4"
   }
 }
