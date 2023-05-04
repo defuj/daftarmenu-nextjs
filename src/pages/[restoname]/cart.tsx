@@ -15,6 +15,8 @@ import Loading from "../../components/Loading";
 import EmptyState from "../../components/EmptyState";
 // import models
 import CartModel from "../../models/CartModel";
+// import icons
+import IconNotFound from "../../assets/icons/not-found.svg";
 
 const Cart = React.memo(() => {
     const { t, i18n } = useTranslation()
@@ -451,7 +453,7 @@ const Cart = React.memo(() => {
                     </>
                 }
 
-                {notFound && <EmptyState minHeight={`${minHeight}`} title={`${t('page-not-found')}`} desc={'Mau pake linknya? <u><a href="https://daftarmenu.com" class="color-green800" target="_blank" rel="noopener noreferrer">Buat daftarmenu sekarang.</a></u>'} icon={require('../assets/icons/not-found.svg')} />}
+                {notFound && <EmptyState minHeight={`${minHeight}`} title={`${t('page-not-found')}`} desc={'Mau pake linknya? <u><a href="https://daftarmenu.com" class="color-green800" target="_blank" rel="noopener noreferrer">Buat daftarmenu sekarang.</a></u>'} icon={IconNotFound} />}
 
             </main>
             {cart.length > 0 &&
