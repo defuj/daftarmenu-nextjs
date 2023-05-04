@@ -453,7 +453,7 @@ const Home = () => {
                 setStarting(false);
             } else {
                 getInformationData();
-                window.addEventListener("onScroll", loadOnScroll, { passive: true });
+                window.addEventListener("scroll", loadOnScroll, { passive: true });
                 // window.onscroll = () => loadOnScroll();
                 // remove event on unmount to prevent a memory leak with the cleanup
                 return () => {
