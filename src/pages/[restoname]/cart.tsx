@@ -153,7 +153,7 @@ const Cart = React.memo(() => {
         return (
             <div title={slugify(cart.nama).toString()} className="cart-items w-100 flex-column my-2" key={cart.nama}>
                 <div className="d-flex align-items-center flex-row w-100">
-                    <img src={`${cart.cover[0]}`} alt="" className="product-cover mr-3" />
+                    <Image src={`${cart.cover[0]}`} alt="" className="product-cover mr-3" />
                     <div className="flex-column flex-fill">
                         <p className="bodytext1 color-green900 max-line-2 semibold m-0 pb-1">{cart.nama}</p>
                         <p className="bodytext2 color-green900 font-weight-bold m-0">{cart.harga}</p>
