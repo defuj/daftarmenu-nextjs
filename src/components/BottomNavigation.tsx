@@ -10,4 +10,5 @@ const BottomNavigation = () => {
     )
 }
 
+BottomNavigation.displayName = 'BottomNavigation';
 export default BottomNavigation;

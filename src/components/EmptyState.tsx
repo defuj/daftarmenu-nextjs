@@ -26,4 +26,6 @@ const EmptyState = React.memo(({
     </div>
   );
 })
+
+EmptyState.displayName = 'EmptyState';
 export default EmptyState;

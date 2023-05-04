@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { Autoplay, Pagination, Scrollbar } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react'
 import Image from "next/image";
@@ -9,14 +9,15 @@ interface Props {
 }
 
 const ImageSliderNav = React.memo(({ cover }: Props) => {
-    const updatePosition = () => {
+
+    const updatePosition = useCallback(() => {
         try {
             const pagination = document.querySelector('.swiper-pagination') as HTMLElement;
             const container = document.getElementById('container-slide') as HTMLElement;
             container.appendChild(pagination);
             pagination.style.cssText = 'bottom:auto';
         } catch (error) { }
-    }
+    }, [])
 
     useEffect(() => {
         updatePosition();
@@ -41,4 +42,5 @@ const ImageSliderNav = React.memo(({ cover }: Props) => {
     )
 })
 
+ImageSliderNav.displayName = 'ImageSliderNav';
 export default ImageSliderNav;
