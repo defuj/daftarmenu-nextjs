@@ -1,5 +1,3 @@
-import { useRouter } from 'next/router'
-
 const storageAvailable = (type) => {
     let storage;
     try {
@@ -349,16 +347,16 @@ export const deleteLastPage = () => {
     }
 }
 
-export const checkSession = () => {
-    const router = useRouter('');
-    const pathname = router.pathname;
-    if (checkAccount()) {
-        if (pathname === '/sign' || pathname === '/signup' || pathname === '/forgot_password' || pathname === '/reset_password') {
-            window.location.href = '/home';
-        }
-    } else {
-        if (pathname === '/profile' || pathname === '/history' || pathname === '/detail_history' || pathname === '/input_data_booking' || pathname === '/select_payment_booking' || pathname === '/upload_payment' || pathname === '/tracking_location') {
-            window.location.href = '/signin';
-        }
-    }
-}
+// export const checkSession = () => {
+//     const router = useRouter('');
+//     const pathname = router.pathname;
+//     if (checkAccount()) {
+//         if (pathname === '/sign' || pathname === '/signup' || pathname === '/forgot_password' || pathname === '/reset_password') {
+//             window.location.href = '/home';
+//         }
+//     } else {
+//         if (pathname === '/profile' || pathname === '/history' || pathname === '/detail_history' || pathname === '/input_data_booking' || pathname === '/select_payment_booking' || pathname === '/upload_payment' || pathname === '/tracking_location') {
+//             window.location.href = '/signin';
+//         }
+//     }
+// }
