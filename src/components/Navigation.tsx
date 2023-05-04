@@ -42,4 +42,5 @@ const Navigation = ({ cartCount, onSearch, isSearching }: Props) => {
     );
 };
 
+Navigation.displayName = 'Navigation';
 export default Navigation;
