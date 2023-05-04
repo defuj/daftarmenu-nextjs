@@ -505,7 +505,7 @@ const Home = () => {
                             <div style={{ backgroundImage: `url('../../assets/images/hero.png')`, backgroundRepeat: 'repeat', backgroundSize: '200px' }} className="container-user d-flex flex-row justify-content-between align-items-center px-3 py-3 background-green500">
                                 <Link className="content-image-profile flex-shrink" href="#" title="profile">
                                     <div className="frame-image">
-                                        {/* <Image src={image !== '' ? image : defaultImageProfile} alt="profile" id="dataImage" title="image-profile" priority /> */}
+                                        <Image src={image !== '' ? image : defaultImageProfile} alt="profile" id="dataImage" title="image-profile" priority />
                                     </div>
                                 </Link>
 
