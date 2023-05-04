@@ -453,16 +453,12 @@ const Home = () => {
                 setStarting(false);
             } else {
                 getInformationData();
-            }
-            changseSize();
-        } else {
-            if (restoname === undefined) {
-                setNotFound(true);
-                setLoading(false);
-                changseSizeNotFound();
-                setStarting(false);
-            } else {
-                getInformationData();
+                window.addEventListener("onScroll", loadOnScroll, { passive: true });
+                // window.onscroll = () => loadOnScroll();
+                // remove event on unmount to prevent a memory leak with the cleanup
+                return () => {
+                    window.removeEventListener("scroll", loadOnScroll);
+                };
             }
             changseSize();
         }
@@ -481,13 +477,6 @@ const Home = () => {
         if (router.isReady) {
             checkStart();
             checkNextPage();
-
-            // window.addEventListener("onScroll", loadOnScroll, { passive: false });
-            window.onscroll = () => loadOnScroll();
-            // remove event on unmount to prevent a memory leak with the cleanup
-            return () => {
-                window.removeEventListener("scroll", loadOnScroll);
-            };
         }
 
     }, [router.isReady, notFound && notFoundEditing && changseSizeNotFound, currentPage]);
