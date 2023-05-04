@@ -494,4 +494,5 @@ const Cart = React.memo(() => {
     )
 })
 
+Cart.displayName = 'Cart';
 export default Cart;
