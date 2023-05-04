@@ -17,6 +17,7 @@ import Navigation from "../../components/Navigation";
 import CartModel from "../../models/CartModel";
 import Swal from "sweetalert2";
 import { getCart, updateCart, writeRestaurantID } from "../../helper/session";
+import Image from "next/image";
 
 const Home = () => {
     const { t } = useTranslation();
@@ -491,7 +492,7 @@ const Home = () => {
                             <div style={{ backgroundImage: `url('../../assets/images/hero.png')`, backgroundRepeat: 'repeat', backgroundSize: '200px' }} className="container-user d-flex flex-row justify-content-between align-items-center px-3 py-3 background-green500">
                                 <Link className="content-image-profile flex-shrink" href="#" title="profile">
                                     <div className="frame-image">
-                                        <img src={image !== '' ? image : defaultImageProfile} alt="profile" id="dataImage" title="image-profile" />
+                                        <Image src={image !== '' ? image : defaultImageProfile} alt="profile" id="dataImage" title="image-profile" />
                                     </div>
                                 </Link>
 

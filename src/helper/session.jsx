@@ -350,7 +350,7 @@ export const deleteLastPage = () => {
 }
 
 export const checkSession = () => {
-    const router = useRouter();
+    const router = useRouter('');
     const pathname = router.pathname;
     if (checkAccount()) {
         if (pathname === '/sign' || pathname === '/signup' || pathname === '/forgot_password' || pathname === '/reset_password') {
