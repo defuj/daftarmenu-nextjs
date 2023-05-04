@@ -442,7 +442,7 @@ const Home = () => {
 
     // window.onscroll = () => loadOnScroll();
 
-    useEffect(() => {
+    const checkStart = () => {
         if (starting) {
             if (restoname === undefined) {
                 setNotFound(true);
@@ -454,13 +454,20 @@ const Home = () => {
             }
             changseSize();
         }
+    }
 
+    const checkNextPage = () => {
         if (currentPage > page.current) {
             setTimeout(() => {
                 setIsLoadingProduct(false);
                 showProduct(currentPage);
             }, 2000);
         }
+    }
+
+    useEffect(() => {
+        checkStart();
+        checkNextPage();
 
         window.addEventListener("scroll", loadOnScroll, { passive: true });
         // remove event on unmount to prevent a memory leak with the cleanup
