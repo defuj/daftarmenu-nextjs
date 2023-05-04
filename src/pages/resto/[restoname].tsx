@@ -3,21 +3,26 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next'
 import Head from 'next/head'
 import Link from 'next/link';
+import Image from "next/image";
+
+import Swal from "sweetalert2";
 import axios, { restaurant, products, checkPremium } from '../../helper/axios';
 import { slugify } from "../../helper/others";
-import CategoryModel from "../../models/CategoryModel";
-import ProductModel from "../../models/ProductModel";
+import { getCart, updateCart, writeRestaurantID } from "../../helper/session";
+// import components
 import Loading from "../../components/Loading";
-import defaultImageProfile from '../../assets/icons/default-image-profile.svg';
 import EmptyState from "../../components/EmptyState";
-import ProductDetailModel from "../../models/ProductDetailModel";
 import ImageSliderNav from "../../components/ImageSliderNav";
 import Footer from "../../components/Footer";
 import Navigation from "../../components/Navigation";
+// import models
 import CartModel from "../../models/CartModel";
-import Swal from "sweetalert2";
-import { getCart, updateCart, writeRestaurantID } from "../../helper/session";
-import Image from "next/image";
+import ProductDetailModel from "../../models/ProductDetailModel";
+import CategoryModel from "../../models/CategoryModel";
+import ProductModel from "../../models/ProductModel";
+// import icons
+import defaultImageProfile from '../../assets/icons/default-image-profile.svg';
+import IconNotFound from "../../assets/icons/not-found.svg";
 
 const Home = () => {
     const { t } = useTranslation();
@@ -172,7 +177,6 @@ const Home = () => {
         axios.get(`${restaurant}/${restoname}`)
             .then(response => {
                 let result = response.data;
-                // console.log(result);
                 if (result.status) {
                     const data = result.data;
                     setImage(data.cover_resto);
@@ -440,10 +444,18 @@ const Home = () => {
         }
     }
 
-    // window.onscroll = () => loadOnScroll();
-
     const checkStart = () => {
         if (starting) {
+            if (restoname === undefined) {
+                setNotFound(true);
+                setLoading(false);
+                changseSizeNotFound();
+                setStarting(false);
+            } else {
+                getInformationData();
+            }
+            changseSize();
+        } else {
             if (restoname === undefined) {
                 setNotFound(true);
                 setLoading(false);
@@ -466,30 +478,24 @@ const Home = () => {
     }
 
     useEffect(() => {
-        checkStart();
-        checkNextPage();
+        if (router.isReady) {
+            checkStart();
+            checkNextPage();
 
-        window.addEventListener("scroll", loadOnScroll, { passive: true });
-        // remove event on unmount to prevent a memory leak with the cleanup
-        return () => {
-            window.removeEventListener("scroll", loadOnScroll);
+            window.addEventListener("scroll", loadOnScroll, { passive: true });
+            // remove event on unmount to prevent a memory leak with the cleanup
+            return () => {
+                window.removeEventListener("scroll", loadOnScroll);
+            };
         }
 
-    }, [notFound && notFoundEditing && changseSizeNotFound, currentPage]);
+    }, [router.isReady, notFound && notFoundEditing && changseSizeNotFound, currentPage]);
 
     return (
         <>
             <Head>
-                <meta charSet='utf-8' />
-                <link rel="icon" href="/favicon.ico" />
-                <link rel="apple-touch-icon" href="logo192.png" />
-                <link rel="manifest" href="/manifest.json" />
-
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <meta name="theme-color" content="#70B44E" />
-                <meta itemProp="name" content="Daftar Menu" />
-                <meta itemProp="description" content="Kelola restoran di daftarmenu.com - Tingkatkan pendapatan restoranmu dengan pelayanan servis terbaik menggunakan QRCode, Coba dan buat QRCode Restoranmu sekarang secara gratis hanya dengan satu langkah" />
-                <meta itemProp="image" content="http://daftarmenu.com/assets/banner.png" />
+                <title>DaftarMenu - Home</title>
             </Head>
             {!notFound && !starting && <Navigation cartCount={cartCount} onSearch={searchMenu} isSearching={isSearching} />}
             {!starting &&
@@ -499,7 +505,7 @@ const Home = () => {
                             <div style={{ backgroundImage: `url('../../assets/images/hero.png')`, backgroundRepeat: 'repeat', backgroundSize: '200px' }} className="container-user d-flex flex-row justify-content-between align-items-center px-3 py-3 background-green500">
                                 <Link className="content-image-profile flex-shrink" href="#" title="profile">
                                     <div className="frame-image">
-                                        <Image src={image !== '' ? image : defaultImageProfile} alt="profile" id="dataImage" title="image-profile" />
+                                        {/* <Image src={image !== '' ? image : defaultImageProfile} alt="profile" id="dataImage" title="image-profile" priority /> */}
                                     </div>
                                 </Link>
 
@@ -562,7 +568,7 @@ const Home = () => {
                         </>
                     }
 
-                    {notFound && <EmptyState minHeight={minHeight} title={`${t('page-not-found')}`} desc={'Mau pake linknya? <a href="https://daftarmenu.com" class="color-green800" target="_blank" rel="noopener noreferrer"><u>Buat daftarmenu sekarang.</u></a>'} icon='../../assets/icons/not-found.svg' />}
+                    {notFound && <EmptyState minHeight={minHeight} title={`${t('page-not-found')}`} desc={'Mau pake linknya? <a href="https://daftarmenu.com" class="color-green800" target="_blank" rel="noopener noreferrer"><u>Buat daftarmenu sekarang.</u></a>'} icon={IconNotFound} />}
 
                     {/* modal */}
                     <div className="modal fade" id="ModalSlide" tabIndex={-1} role="dialog" aria-hidden="true">

@@ -34,7 +34,7 @@ const ImageSliderNav = React.memo(({ cover }: Props) => {
                 pagination={{ clickable: true }}>
                 {cover.map((item, index) =>
                     <SwiperSlide key={index}>
-                        <Image src={item.toString()} alt="menu-cover" title={`menu-cover-${index}`} />
+                        <Image src={item.toString()} alt="menu-cover" title={`menu-cover-${index}`} priority />
                     </SwiperSlide>
                 )}
             </Swiper>

@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import IconEmptyMenu from '../assets/icons/empty-menu.svg';
 interface Props {
   title?: string;
   desc?: string;
@@ -9,7 +10,7 @@ interface Props {
   minHeight?: string;
 }
 const EmptyState = React.memo(({
-  icon = '../../assets/icons/empty-menu.svg',
+  icon = IconEmptyMenu,
   title = '',
   desc = 'Belum ada menunya nih,</br>Silahkan tambahkan terlebih dahulu!',
   wrapHeight = false,
