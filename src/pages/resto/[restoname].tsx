@@ -482,7 +482,8 @@ const Home = () => {
             checkStart();
             checkNextPage();
 
-            window.addEventListener("scroll", loadOnScroll, { passive: false });
+            // window.addEventListener("onScroll", loadOnScroll, { passive: false });
+            window.onscroll = () => loadOnScroll();
             // remove event on unmount to prevent a memory leak with the cleanup
             return () => {
                 window.removeEventListener("scroll", loadOnScroll);
