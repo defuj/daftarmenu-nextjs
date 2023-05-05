@@ -75,7 +75,7 @@ body {
     overflow-x: hidden;
 }
 
-body {
+.error-page {
     color: rgb(var(--foreground-rgb));
     background: linear-gradient(to bottom,
             transparent,
