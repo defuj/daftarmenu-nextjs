@@ -1,8 +1,13 @@
-import { Inter } from 'next/font/google'
 import ErrorPage from 'next/error'
-
-const inter = Inter({ subsets: ['latin'] })
+import Head from 'next/head'
 
 export default function Home() {
-  return <ErrorPage statusCode={404} />
+  return (
+    <>
+      <Head>
+        <link rel="stylesheet" type="text/css" href="/assets/styles/error.css" />
+      </Head>
+      <ErrorPage statusCode={404} />
+    </>
+  )
 }
